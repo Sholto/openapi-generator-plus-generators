@@ -1,0 +1,27 @@
+openapi: '3.0.3'
+info:
+  version: '1.0'
+  title: Test
+paths:
+  /things:
+    get:
+      tags:
+        - things
+      operationId: getThing
+      responses:
+        '200':
+          description: A thing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thing'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Thing'
+components:
+  schemas:
+    Thing:
+      type: object
+      properties:
+        name:
+          type: string

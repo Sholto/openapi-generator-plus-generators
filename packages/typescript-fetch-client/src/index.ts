@@ -78,6 +78,16 @@ const createGenerator: CodegenGeneratorConstructor = (config, context) => {
 					if (op.headerParams) {
 						op.headerParams = idx.filter(op.headerParams, param => !isForbiddenHeaderName(param.name))
 					}
+
+					const acceptMimeTypes = op.responses
+						? [...new Set(
+							idx.allValues(op.responses)
+								.flatMap(r => r.contents ? r.contents.map(c => c.mediaType.mimeType) : [])
+								.filter(mimeType => !mimeType.includes('*'))
+						)].join(', ')
+						: ''
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
+					;(op as any).acceptMimeTypes = acceptMimeTypes || null
 				}
 			}
 		},

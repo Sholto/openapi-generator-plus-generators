@@ -135,6 +135,11 @@ export const {{className name}}ApiFetchParamCreator = function (configuration?: 
 			{{/each}}
 
 	{{/with}}
+	{{#if acceptMimeTypes}}
+			if (!localVarHeaderParameter.has('Accept')) {
+				localVarHeaderParameter.set('Accept', '{{{acceptMimeTypes}}}');
+			}
+	{{/if}}
 			localVarRequestOptions.headers = localVarHeaderParameter;
 	{{#if formParams}}
 			localVarRequestOptions.body = localVarFormParams.toString();

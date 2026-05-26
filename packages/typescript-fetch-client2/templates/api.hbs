@@ -95,6 +95,11 @@ export function {{identifier name}}ParamCreator({{#each parameters}}{{>frag/para
 	{{/each}}
 
 {{/with}}
+{{#if acceptMimeTypes}}
+	if (!localVarHeaderParameter.has('Accept')) {
+		localVarHeaderParameter.set('Accept', '{{{acceptMimeTypes}}}');
+	}
+{{/if}}
 	localVarRequestOptions.headers = localVarHeaderParameter;
 {{#if formParams}}
 	localVarRequestOptions.body = localVarFormParams.toString();
